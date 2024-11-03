@@ -28,7 +28,7 @@ class TiposController
                 $this->tiposRepository
             );
 
-            logger()->info('account created with id="' . $data . '"');
+            logger()->info('Tipo Criado com sucesso id="' . $data . '"');
             return response()->json(['success' => true, 'data' => $data]);
         }catch (\Exception $e){
             logger()->error($e);

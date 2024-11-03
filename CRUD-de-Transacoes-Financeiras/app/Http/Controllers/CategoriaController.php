@@ -28,7 +28,7 @@ class CategoriaController
                 $this->categoriaRepository
             );
 
-            logger()->info('account created with id="' . $data . '"');
+            logger()->info('Categoria Criada com sucesso id="' . $data . '"');
             return response()->json(['success' => true, 'data' => $data]);
         }catch (\Exception $e){
             logger()->error($e);

@@ -10,13 +10,11 @@ use Symfony\Component\HttpFoundation\InputBag;
 class CategoriaCreateAction implements \App\Contracts\ActionInterface
 {
 
+    /**
+     * @throws \Exception
+     */
     public function execute(InputBag|array|ValidatedInput|Request|null $request, ?RepositoryInterface $repository, ?int $id = null): mixed
     {
-        try {
-            return $repository->store($request->all());
-        }catch (\Exception $e){
-            throw  $e;
-        }
-        // TODO: Implement execute() method.
+        return $repository->store($request->all());
     }
 }

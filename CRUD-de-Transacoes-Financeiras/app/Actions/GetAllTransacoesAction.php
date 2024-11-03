@@ -12,12 +12,6 @@ class GetAllTransacoesAction implements \App\Contracts\ActionInterface
 
     public function execute(InputBag|array|ValidatedInput|Request|null $request, ?RepositoryInterface $repository, ?int $id = null): mixed
     {
-        $array = [];
-        try {
-            return $repository->getAll($array);
-        }catch (\Exception $e){
-            throw  $e;
-        }
-        // TODO: Implement execute() method.
+        return $repository->getAll($request);
     }
 }

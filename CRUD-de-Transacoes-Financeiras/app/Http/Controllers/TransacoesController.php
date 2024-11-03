@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Actions\DeleteTransacoesAction;
-use App\Actions\FiltroTransacoesAction;
+use App\Actions\GetTransacoesByIdAction;
 use App\Actions\GetAllTransacoesAction;
+use App\Actions\GetTransacoesReportAction;
 use App\Actions\TransacoesCreateAction;
 use App\Actions\TransacoesUpdateAction;
 use App\Http\Requests\TransacoesRequest;
 use App\Repositories\TransacoesRepository;
+use Illuminate\Http\Request;
 
 class TransacoesController
 {
@@ -33,7 +35,7 @@ class TransacoesController
                 $this->transacoesRepository
             );
 
-            logger()->info('account created with id="' . $data . '"');
+            logger()->info('Transação Criada com sucesso id="' . $data . '"');
             return response()->json(['success' => true, 'data' => $data]);
         }catch (\Exception $e){
             logger()->error($e);
@@ -59,7 +61,7 @@ class TransacoesController
                 $id
             );
 
-            logger()->info('account created with id="' . $data . '"');
+            logger()->info('Transação atualizada com sucesso id="' . $data . '"');
             return response()->json(['success' => true, 'data' => $data]);
         }catch (\Exception $e){
             logger()->error($e);
@@ -71,16 +73,17 @@ class TransacoesController
 
     public function all(
         GetAllTransacoesAction $getAllTransacoesAction,
+        Request $request
     ){
 
         try {
 
             $data = $getAllTransacoesAction->execute(
-                null,
+                $request->only('type'),
                 $this->transacoesRepository,
             );
 
-            logger()->info('account created with id="' . $data . '"');
+            logger()->info('Transação coletada id="' . $data . '"');
             return response()->json(['success' => true, 'data' => $data]);
         }catch (\Exception $e){
             logger()->error($e);
@@ -103,7 +106,7 @@ class TransacoesController
                 $id
             );
 
-            logger()->info('account created with id="' . $data . '"');
+            logger()->info('Transação deletada com sucesso  id="' . $data . '"');
             return response()->json(['success' => true, 'data' => $data]);
         }catch (\Exception $e){
             logger()->error($e);
@@ -115,8 +118,8 @@ class TransacoesController
 
 
     public function filtrer(
-        FiltroTransacoesAction $filtroTransacoesAction,
-                               $id
+        GetTransacoesByIdAction $filtroTransacoesAction,
+                                $id
     ){
 
         try {
@@ -127,7 +130,29 @@ class TransacoesController
                 $id
             );
 
-            logger()->info('account created with id="' . $data . '"');
+            logger()->info('Transação Filtrada com sucesso id="' . $data . '"');
+            return response()->json(['success' => true, 'data' => $data]);
+        }catch (\Exception $e){
+            logger()->error($e);
+            return response()->json(['error' => ['details' => $e->getMessage(), 'file' => $e->getFile(), 'line' => $e->getLine()]], 400);
+        }
+
+    }
+
+
+    public function report(
+        GetTransacoesReportAction $getTransacoesReportAction,
+        Request $request
+    ){
+
+        try {
+
+            $data = $getTransacoesReportAction->execute(
+                $request->only('date'),
+                $this->transacoesRepository,
+            );
+
+            logger()->info('Transação coletada');
             return response()->json(['success' => true, 'data' => $data]);
         }catch (\Exception $e){
             logger()->error($e);

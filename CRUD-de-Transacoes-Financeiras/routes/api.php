@@ -31,8 +31,9 @@ Route::middleware('auth:sanctum')->group(function () {
 
 
     Route::post('createTransacoes', [TransacoesController::class, 'store']);
-    Route::post('updateTransacoes/{id}', [TransacoesController::class, 'update']);
+    Route::put('updateTransacoes/{id}', [TransacoesController::class, 'update']);
     Route::get('Transacoes', [TransacoesController::class, 'all']);
+    Route::get('TransacoesReport', [TransacoesController::class, 'report']);
     Route::delete('deleteTransacoes/{id}', [TransacoesController::class, 'delete']);
     Route::get('Transacoes/{id}', [TransacoesController::class, 'filtrer']);
 
