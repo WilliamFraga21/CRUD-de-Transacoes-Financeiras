@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\TiposController;
 use App\Http\Controllers\TransacoesController;
+use App\Http\Controllers\CategoriaController;
 
 
 // Rotas de autenticação
@@ -21,6 +22,10 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::post('createTipos', [TiposController::class, 'store']);
     Route::get('tipos', [TiposController::class, 'all']);
+
+
+    Route::post('createCategoria', [CategoriaController::class, 'store']);
+
 
     Route::post('createTransacoes', [TransacoesController::class, 'store']);
     Route::post('updateTransacoes/{id}', [TransacoesController::class, 'update']);
