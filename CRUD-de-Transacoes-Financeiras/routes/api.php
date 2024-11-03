@@ -9,6 +9,7 @@ use App\Http\Controllers\TransacoesController;
 use App\Http\Controllers\CategoriaController;
 
 
+
 // Rotas de autenticação
 Route::post('register',[UserAuthController::class,'register']);
 Route::post('login', [AuthController::class, 'login']);
@@ -25,6 +26,8 @@ Route::middleware('auth:sanctum')->group(function () {
 
 
     Route::post('createCategoria', [CategoriaController::class, 'store']);
+
+
 
 
     Route::post('createTransacoes', [TransacoesController::class, 'store']);

@@ -25,6 +25,8 @@ class TransacoesRequest extends FormRequest
             'valor' => 'required|numeric|regex:/^\d+(\.\d{1,2})?$/',
             'data' => 'required|date',
             'tipo_id' => 'required|integer',
+
+            'categoria_id' => 'required|integer',
         ];
     }
 
@@ -41,6 +43,9 @@ class TransacoesRequest extends FormRequest
             'data.date' => 'A data deve ser uma data válida.',
             'tipo_id.required' => 'O tipo ID é obrigatório.',
             'tipo_id.integer' => 'O tipo ID deve ser um número inteiro.',
+            'categoria_id.required' => 'O tipo ID é obrigatório.',
+            'categoria_id.integer' => 'O tipo ID deve ser um número inteiro.',
+
         ];
     }
 

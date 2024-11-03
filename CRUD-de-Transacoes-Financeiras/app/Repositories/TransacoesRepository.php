@@ -45,6 +45,8 @@ class TransacoesRepository implements \App\Contracts\RepositoryInterface
                 'descricao' => $data['descricao'],
                 'valor' => $data['valor'],
                 'data' => $data['data'],
+                'categoria_id' => $data['categoria_id'],
+
             ],
             $data
         );        // TODO: Implement store() method.

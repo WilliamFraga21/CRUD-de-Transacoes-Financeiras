@@ -24,6 +24,8 @@ class Transacoes extends Model
         'valor',
         'data',
         'tipo_id',
+        'categoria_id',
+
     ];
 
     /**
