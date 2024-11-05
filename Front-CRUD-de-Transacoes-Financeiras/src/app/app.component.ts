@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import {TesteService} from './_services/teste.service';
+
 // @ts-ignore
 import { Todo } from './_Models/teste.model'; // Importa o modelo
 
@@ -11,19 +11,13 @@ import { Todo } from './_Models/teste.model'; // Importa o modelo
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
-export class AppComponent implements OnInit{
+export class AppComponent {
   title = 'Front-CRUD-de-Transacoes-Financeiras';
   todos: Todo[] = [];
 
-  constructor(private testeService:  TesteService) {
+  constructor() {
   }
 
-  ngOnInit() {
-    this.testeService.getall().subscribe((response) => {
-      this.todos = response; // Atribui a resposta ao array
-      console.log(this.todos);
-    });
-  }
 
 
 

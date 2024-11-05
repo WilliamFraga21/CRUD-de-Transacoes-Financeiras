@@ -1,0 +1,198 @@
+/* Estilização da tabela */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  font-size: 1rem;
+}
+
+th, td {
+  padding: 12px;
+  border: 1px solid #ddd;
+
+
+}
+
+th {
+  background-color: #f4f4f4;
+  color: #333;
+}
+
+tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+tr:hover {
+  background-color: #f1f1f1;
+}
+
+/* Estilização dos botões */
+button {
+  background-color: #007bff; /* Cor azul */
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #0056b3; /* Azul mais escuro ao passar o mouse */
+}
+
+/* Estilização do modal */
+.modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+}
+
+.modal-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 5px;
+  width: 500px; /* Ajuste a largura conforme necessário */
+  max-width: 90%; /* Garante que o modal não ultrapasse a largura da tela */
+  position: relative; /* Necessário para posicionar o botão corretamente */
+}
+
+.close-button {
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  position: absolute; /* Use position absolute para posicioná-lo em relação ao modal */
+  top: 10px;
+  right: 10px; /* Coloque o botão no canto superior direito */
+}
+
+h3 {
+  margin: 0 0 15px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+input[type="categoria"],
+input[type="text"],
+input[type="tipo"],
+input[type="tipo"],
+input[type="number"],
+input[type="datetime-local"],
+input[type="date"] {
+  width: 90%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-bottom: 15px;
+  font-size: 1rem;
+}
+
+/* Estilização dos botões dentro do modal */
+.modal-content button {
+  margin-right: 10px;
+}
+
+.modal-content button:last-child {
+  background-color: #dc3545; /* Vermelho para o botão de cancelar */
+}
+
+.modal-content button:last-child:hover {
+  background-color: #c82333; /* Vermelho mais escuro ao passar o mouse */
+}
+
+/* Responsividade */
+@media (max-width: 600px) {
+  table {
+    font-size: 0.9rem; /* Tamanho de fonte menor para telas pequenas */
+  }
+
+  .modal-content {
+    padding: 15px; /* Menos padding para telas menores */
+  }
+
+  input[type="text"],
+  input[type="number"],
+  input[type="date"] {
+    padding: 8px; /* Menos padding nos inputs */
+  }
+}
+
+@media (max-width: 400px) {
+  button {
+    padding: 6px 10px; /* Ajuste de padding dos botões em telas pequenas */
+  }
+}
+
+
+/* Estilo do contêiner */
+div {
+  font-family: Arial, sans-serif; /* Fonte padrão */
+  margin: 20px; /* Margem ao redor do contêiner */
+}
+
+/* Estilo dos labels */
+label {
+  display: flex; /* Flexbox para alinhar o checkbox e o texto */
+  align-items: center; /* Centraliza verticalmente */
+  margin-bottom: 10px; /* Espaçamento entre os labels */
+  cursor: pointer; /* Muda o cursor ao passar sobre o label */
+}
+
+/* Estilo dos checkboxes */
+input[type="checkbox"] {
+  appearance: none; /* Remove o estilo padrão do checkbox */
+  width: 20px; /* Largura do checkbox */
+  height: 20px; /* Altura do checkbox */
+  border: 2px solid #007BFF; /* Borda azul */
+  border-radius: 4px; /* Cantos arredondados */
+  outline: none; /* Remove o contorno padrão */
+  margin-right: 10px; /* Espaçamento entre o checkbox e o texto */
+  transition: background-color 0.3s, border-color 0.3s; /* Transição suave */
+}
+
+
+input[type="date"]:focus, textarea:focus {
+  border-color: #0056b3; /* Borda mais escura ao focar */
+}
+
+/* Classe para o textarea */
+.textarea-expandido {
+  height: auto; /* Altura automática */
+  min-height: 50px; /* Altura mínima de 50px */
+  resize: vertical; /* Permite redimensionar apenas verticalmente */
+}
+
+/* Estilo do checkbox ao ser marcado */
+input[type="checkbox"]:checked {
+  background-color: #007BFF; /* Fundo azul quando marcado */
+  border-color: #0056b3; /* Borda mais escura quando marcado */
+}
+
+/* Estilo do texto da seleção */
+p {
+  font-size: 16px; /* Tamanho da fonte */
+  font-weight: bold; /* Texto em negrito */
+  color: #333; /* Cor do texto */
+  margin-top: 20px; /* Margem superior */
+}
+
+
+textarea {
+  width: 90%; /* Largura total */
+  padding: 10px; /* Espaçamento interno */
+  border: 2px solid #007BFF; /* Borda azul */
+  border-radius: 4px; /* Cantos arredondados */
+  outline: none; /* Remove o contorno padrão */
+  transition: border-color 0.3s; /* Transição suave para a borda */
+  font-size: 16px; /* Tamanho da fonte */
+}
