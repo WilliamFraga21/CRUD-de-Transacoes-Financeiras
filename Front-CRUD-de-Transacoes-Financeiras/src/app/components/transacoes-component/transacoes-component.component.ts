@@ -1,6 +1,9 @@
-import {Component, HostListener} from '@angular/core';
+import {Component, HostListener, OnInit} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {CurrencyPipe, DatePipe, NgClass, NgForOf, NgIf} from '@angular/common';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {AuthService} from '../../_services/auth.service';
+import {environment} from '../../../environments/environment';
 
 
 
@@ -32,7 +35,46 @@ interface Item {
   styleUrl: './transacoes-component.component.css',
 
 })
-export class TransacoesComponentComponent {
+export class TransacoesComponentComponent implements OnInit {
+
+
+
+  data: any; // Variável para armazenar a resposta do backend
+
+  constructor(
+    private http: HttpClient,
+    private authService: AuthService
+  ) {}
+
+  ngOnInit(): void {
+    this.fetchData();
+  }
+
+  fetchData(): void {
+    const token = this.authService.getToken(); // Recupera o token do AuthService
+
+    // Configura os cabeçalhos com o token e outras informações
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`,
+      'Accept': 'application/json',
+      'X-Requested-With': 'XMLHttpRequest'
+    });
+
+    // Faz a requisição GET para o endpoint desejado
+    this.http.get(`${environment.apiUrl}/api/Transacoes`, { headers })
+      .subscribe(
+        (response: any) => {
+          this.items = response.data; // Armazena a resposta no componente
+
+          console.log('Resposta do backend:', response);
+        },
+        (error) => {
+          console.error('Erro ao carregar dados:', error);
+        }
+      );
+  }
+
+
 
 
 
