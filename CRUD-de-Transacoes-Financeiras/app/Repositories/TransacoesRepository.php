@@ -11,9 +11,12 @@ class TransacoesRepository implements \App\Contracts\RepositoryInterface
 
     public function getAll(array $params)
     {
-        if (!isset($params['type'])) return Transacoes::get();
+        if (!isset($params['type']))  return Transacoes::join('tipo', 'transacoes.tipo_id', '=', 'tipo.id')->join('categoria','transacoes.categoria_id','categoria.id')->get();
 
-        return Transacoes::where('tipo_id', $params['type'])->get();
+        return Transacoes::join('tipo', 'transacoes.tipo_id', '=', 'tipo.id')
+            ->join('categoria','transacoes.categoria_id','categoria.id')
+            ->where('transacoes.tipo_id', $params['type'])
+            ->get();
     }
 
     public function getById(int $id)
