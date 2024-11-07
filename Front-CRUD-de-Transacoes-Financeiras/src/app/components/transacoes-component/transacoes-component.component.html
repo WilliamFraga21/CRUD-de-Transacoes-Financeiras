@@ -1,32 +1,36 @@
 <!-- Formulário de Filtro -->
-<div style="display: flex">
-  <div>
+<div style="display: flex; flex-wrap: wrap; gap: 10px;">
+  <div style="flex: 1 1 200px;">
     <label for="tipoFiltro">Tipo:</label>
     <input type="text" [(ngModel)]="tipoFiltro" id="tipoFiltro" placeholder="Filtrar por tipo">
   </div>
 
-  <div>
+  <div style="flex: 1 1 200px;">
     <label for="valorFiltro">Valor:</label>
     <input type="number" [(ngModel)]="valorFiltro" id="valorFiltro" placeholder="Filtrar por valor">
   </div>
 
-
-
-  <div style="display: flex;margin: 0">
-    <div>
+  <div style="display: flex; flex: 1 1 100%; gap: 10px;">
+    <div style="flex: 1;">
       <label for="dataInicioFiltro">Data Início:</label>
       <input type="date" [(ngModel)]="dataInicioFiltro" id="dataInicioFiltro">
     </div>
-
-    <div>
+    <div style="flex: 1;">
       <label for="dataFimFiltro">Data Fim:</label>
       <input type="date" [(ngModel)]="dataFimFiltro" id="dataFimFiltro">
     </div>
   </div>
+
+  <div style="flex: 1 1 100%; display: flex; justify-content: center;">
+    <app-report-component [data]="databack" style="max-height: 200px; width: 100%;"></app-report-component>
+  </div>
 </div>
 
+<button type="button" (click)="openCreateModal()">Criar Transação</button>
+
+
 <!-- Tabela -->
-<table>
+<table >
   <thead>
   <tr>
     <th>ID</th>
@@ -37,11 +41,11 @@
     <th>Ações</th>
   </tr>
   </thead>
-  <tbody>
-  <tr *ngFor="let item of getFilteredItems()">
+  <tbody *ngIf="getFilteredItems()">
+  <tr  *ngFor="let item of getFilteredItems(); trackBy: trackById">
     <td>{{ item.id }}</td>
     <td>{{ item.tipo }}</td>
-    <td>{{ item.categoria }}</td>
+    <td>{{ item.descricao }}</td>
     <td>{{ item.valor | currency }}</td>
     <td>{{ item.data | date:'dd/MM/yyyy' }}</td>
     <td>
@@ -52,20 +56,22 @@
   </tbody>
 </table>
 
-<!-- Modal para edição -->
+
+
+
 <div *ngIf="isEditModalOpen" class="modal" (click)="closeEditModal()">
   <div class="modal-content" (click)="$event.stopPropagation()">
     <button class="close-button" (click)="closeEditModal()">✖</button>
-    <h3>Editar Item</h3>
-    <form (ngSubmit)="saveEdit()">
+    <h3>{{ isEditMode ? 'Editar Transação' : 'Criar Transação' }}</h3>
+    <form (ngSubmit)="isEditMode ? saveEdit() : createTransaction()">
       <div>
         <label>
-          <input type="checkbox" [checked]="selected === 'opcao1'" (change)="toggleSelection('opcao1')">
-          Opção 1
+          <input type="checkbox" [checked]="selected === '1'" (change)="toggleSelection('1')">
+          1 Despesas
         </label>
         <label>
-          <input type="checkbox" [checked]="selected === 'opcao2'" (change)="toggleSelection('opcao2')">
-          Opção 2
+          <input type="checkbox" [checked]="selected === '2'" (change)="toggleSelection('2')">
+          2 Receita
         </label>
       </div>
 
@@ -73,11 +79,40 @@
         <p>Selecionado: {{ selected }}</p>
       </div>
 
-      <label for="tipo">Tipo</label>
-      <input [(ngModel)]="selectedItemTipo" name="tipo" id="tipo" type="tipo" required />
+<!--      <label for="tipo">Tipo</label>-->
+<!--      <input [(ngModel)]="selectedItemTipo" name="tipo" id="tipo" type="tipo" required />-->
 
-      <label for="categoria">Categoria</label>
-      <input [(ngModel)]="selectedItemCategoria" name="categoria" id="categoria" type="categoria" required />
+<!--      <label for="categoria">Categoria</label>-->
+<!--      <input [(ngModel)]="selectedItemCategoria" name="categoria" id="categoria" type="categoria" required />-->
+
+
+
+    <div style="display: flex">
+      <div>
+
+        <label for="categoria">Categoria</label>
+        <select [(ngModel)]="selectedItemCategoria" name="categoria" id="categoria"  required style="min-width: 100px;">
+          <option *ngFor="let categoria of categorias" [value]="categoria.id">
+            {{ categoria.categoria }}  <!-- Nome da categoria -->
+          </option>
+        </select>
+      </div>
+
+
+
+      <div>
+        <div>
+          <p>Categoria Selecionada:</p>
+        </div>
+        <div>
+          {{infoEdit.categoria ?  infoEdit.categoria: ''}}
+        </div>
+      </div>
+    </div>
+
+
+
+
 
       <label for="valor">Valor</label>
       <input [(ngModel)]="selectedItemValor" name="valor" id="valor" type="number" required />
@@ -89,7 +124,7 @@
       <textarea [(ngModel)]="selectedItemDescricao" name="descricao" id="descricao" class="textarea-expandido" rows="4" required></textarea>
 
       <div>
-        <button type="submit">Salvar</button>
+        <button type="submit" (click)="buttonCreateEdit()">{{ isEditMode ? 'Salvar' : 'Criar' }}</button>
         <button type="button" (click)="closeEditModal()">Cancelar</button>
       </div>
     </form>

@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\Models\Categoria;
 use App\Models\Tipos;
 
 class TiposRepository implements \App\Contracts\RepositoryInterface
@@ -36,4 +37,11 @@ class TiposRepository implements \App\Contracts\RepositoryInterface
     {
         // TODO: Implement delete() method.
     }
+
+    public function getAllCat(array $params)
+    {
+        return Categoria::all();
+        // TODO: Implement getAll() method.
+    }
+
 }

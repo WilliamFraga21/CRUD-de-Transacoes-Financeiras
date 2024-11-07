@@ -23,6 +23,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::post('createTipos', [TiposController::class, 'store']);
     Route::get('tipos', [TiposController::class, 'all']);
+    Route::get('categorias', [TiposController::class, 'allCategorias']);
 
 
     Route::post('createCategoria', [CategoriaController::class, 'store']);
@@ -31,7 +32,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
 
     Route::post('createTransacoes', [TransacoesController::class, 'store']);
-    Route::put('updateTransacoes/{id}', [TransacoesController::class, 'update']);
+    Route::post('updateTransacoes/{id}', [TransacoesController::class, 'update']);
     Route::get('Transacoes', [TransacoesController::class, 'all']);
     Route::get('TransacoesReport', [TransacoesController::class, 'report']);
     Route::delete('deleteTransacoes/{id}', [TransacoesController::class, 'delete']);

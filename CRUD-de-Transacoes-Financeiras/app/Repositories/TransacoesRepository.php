@@ -11,11 +11,13 @@ class TransacoesRepository implements \App\Contracts\RepositoryInterface
 
     public function getAll(array $params)
     {
-        if (!isset($params['type']))  return Transacoes::join('tipo', 'transacoes.tipo_id', '=', 'tipo.id')->join('categoria','transacoes.categoria_id','categoria.id')->get();
+        if (!isset($params['type']))  return Transacoes::join('tipo', 'transacoes.tipo_id', '=', 'tipo.id')->join('categoria','transacoes.categoria_id','categoria.id')            ->select("transacoes.id",'transacoes.descricao',"transacoes.valor","transacoes.valor","transacoes.data","transacoes.tipo_id","transacoes.categoria_id","tipo.tipo","categoria.categoria")
+            ->get();
 
         return Transacoes::join('tipo', 'transacoes.tipo_id', '=', 'tipo.id')
             ->join('categoria','transacoes.categoria_id','categoria.id')
             ->where('transacoes.tipo_id', $params['type'])
+            ->select("transacoes.id",'transacoes.descricao',"transacoes.valor","transacoes.valor","transacoes.data","transacoes.tipo_id","transacoes.categoria_id","tipo.tipo","categoria.categoria")
             ->get();
     }
 
@@ -100,9 +102,10 @@ class TransacoesRepository implements \App\Contracts\RepositoryInterface
         $qtd = $baseQuery->count('id'); // Aqui não há necessidade de clonar, pois não há `where` extra.
 
         return [
-            'amount2' => $amount+$amount2,
-            'amount' => $amount,
-            'qtd' => $qtd ?? 0
+            'total' => $amount+$amount2,
+            'despesas' => -$amount,
+            'receita' => $amount,
+            'transacoes' => $qtd ?? 0
         ];
     }
 }

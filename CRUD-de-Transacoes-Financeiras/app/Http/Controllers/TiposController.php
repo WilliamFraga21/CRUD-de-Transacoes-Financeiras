@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Actions\GetCategoriaAllAction;
 use App\Actions\GetTiposAllAction;
 use App\Actions\TiposCreateAction;
 use App\Http\Requests\TiposRequest;
@@ -59,6 +60,28 @@ class TiposController
 
     }
 
+
+
+    public function allCategorias(
+        GetCategoriaAllAction $getCategoriaAllAction,
+
+    ){
+
+        try {
+
+            $data = $getCategoriaAllAction->execute(
+                null,
+                $this->tiposRepository
+            );
+
+            logger()->info('account created with id="' . $data . '"');
+            return response()->json(['success' => true, 'data' => $data]);
+        }catch (\Exception $e){
+            logger()->error($e);
+            return response()->json(['error' => ['details' => $e->getMessage(), 'file' => $e->getFile(), 'line' => $e->getLine()]], 400);
+        }
+
+    }
 
 
 
