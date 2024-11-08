@@ -30,7 +30,7 @@ class TransacoesRepository implements \App\Contracts\RepositoryInterface
     {
 
 
-        if ($data['tipo_id'] === 1){
+        if ($data['tipo_id'] == 1){
             $data['valor'] = -abs($data['valor']);
             return Transacoes::firstOrCreate(
                 [
@@ -84,7 +84,9 @@ class TransacoesRepository implements \App\Contracts\RepositoryInterface
     public function delete(int $id)
     {
         try {
-            return Transacoes::findOrFail($id);
+
+            $idTransacao = Transacoes::findOrFail($id);
+            return $idTransacao->delete();
         } catch (ModelNotFoundException $e) {
             throw new \Exception("Transação com o ID {$id} não foi encontrada.");
         }
@@ -103,7 +105,7 @@ class TransacoesRepository implements \App\Contracts\RepositoryInterface
 
         return [
             'total' => $amount+$amount2,
-            'despesas' => -$amount,
+            'despesas' => -$amount2,
             'receita' => $amount,
             'transacoes' => $qtd ?? 0
         ];

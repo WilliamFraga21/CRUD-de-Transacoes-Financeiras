@@ -1,4 +1,4 @@
-/* Estilização da tabela */
+
 table {
   width: 100%;
   border-collapse: collapse;
@@ -116,104 +116,118 @@ input[type="date"] {
   font-size: 1rem;
 }
 
-/* Estilização dos botões dentro do modal */
 .modal-content button {
   margin-right: 10px;
 }
 
 .modal-content button:last-child {
-  background-color: #dc3545; /* Vermelho para o botão de cancelar */
+  background-color: #dc3545;
 }
 
 .modal-content button:last-child:hover {
-  background-color: #c82333; /* Vermelho mais escuro ao passar o mouse */
+  background-color: #c82333;
 }
 
 /* Responsividade */
 @media (max-width: 600px) {
   table {
-    font-size: 0.9rem; /* Tamanho de fonte menor para telas pequenas */
+    font-size: 0.9rem;
   }
 
   .modal-content {
-    padding: 15px; /* Menos padding para telas menores */
+    padding: 15px;
   }
 
   input[type="text"],
   input[type="number"],
   input[type="date"] {
-    padding: 8px; /* Menos padding nos inputs */
+    padding: 8px;
   }
 }
 
 @media (max-width: 400px) {
   button {
-    padding: 6px 10px; /* Ajuste de padding dos botões em telas pequenas */
+    padding: 6px 10px;
   }
 }
 
 
 /* Estilo do contêiner */
 div {
-  font-family: Arial, sans-serif; /* Fonte padrão */
-  margin: 20px; /* Margem ao redor do contêiner */
+  font-family: Arial, sans-serif;
 }
 
 /* Estilo dos labels */
 label {
-  display: flex; /* Flexbox para alinhar o checkbox e o texto */
-  align-items: center; /* Centraliza verticalmente */
-  margin-bottom: 10px; /* Espaçamento entre os labels */
-  cursor: pointer; /* Muda o cursor ao passar sobre o label */
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  cursor: pointer;
 }
 
 /* Estilo dos checkboxes */
 input[type="checkbox"] {
-  appearance: none; /* Remove o estilo padrão do checkbox */
-  width: 20px; /* Largura do checkbox */
-  height: 20px; /* Altura do checkbox */
-  border: 2px solid #007BFF; /* Borda azul */
-  border-radius: 4px; /* Cantos arredondados */
-  outline: none; /* Remove o contorno padrão */
-  margin-right: 10px; /* Espaçamento entre o checkbox e o texto */
-  transition: background-color 0.3s, border-color 0.3s; /* Transição suave */
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #007BFF;
+  border-radius: 4px;
+  outline: none;
+  margin-right: 10px;
+  transition: background-color 0.3s, border-color 0.3s;
 }
 
 
 input[type="date"]:focus, textarea:focus {
-  border-color: #0056b3; /* Borda mais escura ao focar */
+  border-color: #0056b3;
 }
 
-/* Classe para o textarea */
+
 .textarea-expandido {
-  height: auto; /* Altura automática */
-  min-height: 50px; /* Altura mínima de 50px */
-  resize: vertical; /* Permite redimensionar apenas verticalmente */
+  height: auto;
+  min-height: 50px;
+  resize: vertical;
 }
 
-/* Estilo do checkbox ao ser marcado */
+
 input[type="checkbox"]:checked {
-  background-color: #007BFF; /* Fundo azul quando marcado */
-  border-color: #0056b3; /* Borda mais escura quando marcado */
+  background-color: #007BFF;
+  border-color: #0056b3;
 }
 
-/* Estilo do texto da seleção */
+
 p {
-  font-size: 16px; /* Tamanho da fonte */
-  font-weight: bold; /* Texto em negrito */
-  color: #333; /* Cor do texto */
-  margin-top: 20px; /* Margem superior */
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+  margin-top: 20px;
 }
 
 
 textarea {
-  width: 90%; /* Largura total */
-  padding: 10px; /* Espaçamento interno */
-  border: 2px solid #007BFF; /* Borda azul */
-  border-radius: 4px; /* Cantos arredondados */
-  outline: none; /* Remove o contorno padrão */
-  transition: border-color 0.3s; /* Transição suave para a borda */
-  font-size: 16px; /* Tamanho da fonte */
+  width: 90%;
+  padding: 10px;
+  border: 2px solid #007BFF;
+  border-radius: 4px;
+  outline: none;
+  transition: border-color 0.3s;
+  font-size: 16px;
 }
 
+.feedback {
+  padding: 15px;
+  margin-top: 10px;
+  border-radius: 5px;
+  font-weight: bold;
+  text-align: center;
+}
 
+.success {
+  background-color: #32cd32;
+  color: black;
+}
+
+.error {
+  background-color: #ff4d4f;
+  color: white;
+}

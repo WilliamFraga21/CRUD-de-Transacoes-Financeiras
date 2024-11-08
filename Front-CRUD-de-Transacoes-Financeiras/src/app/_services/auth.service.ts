@@ -1,4 +1,4 @@
-// auth.service.ts
+
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -17,11 +17,4 @@ export class AuthService {
     return localStorage.getItem(this.tokenKey);
   }
 
-  clearToken(): void {
-    localStorage.removeItem(this.tokenKey);
-  }
-
-  isAuthenticated(): boolean {
-    return this.getToken() !== null;
-  }
 }
