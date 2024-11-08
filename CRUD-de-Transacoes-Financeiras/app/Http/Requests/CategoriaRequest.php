@@ -30,9 +30,9 @@ class CategoriaRequest extends  FormRequest
     public function messages()
     {
         return [
-            'categoria.required' => 'A descrição é obrigatória.',
-            'categoria.string' => 'A descrição deve ser um texto.',
-            'categoria.max' => 'A descrição não pode exceder 255 caracteres.',
+            'categoria.required' => 'A categoria é obrigatória.',
+            'categoria.string' => 'A categoria deve ser um texto.',
+            'categoria.max' => 'A categoria não pode exceder 255 caracteres.',
 
         ];
     }

@@ -1,0 +1,14 @@
+<!-- feedback.component.html -->
+<div *ngIf="message" [ngClass]="{'success-message': type === 'success', 'error-message': type === 'error'}" class="feedback-container">
+  <ng-container *ngIf="Array.isArray(message); else singleMessage">
+    <ul class="message-list">
+      <li *ngFor="let msg of message">
+        <i class="fa" [ngClass]="{'fa-check-circle': type === 'success', 'fa-times-circle': type === 'error'}"></i> {{ msg }}
+      </li>
+    </ul>
+  </ng-container>
+  <ng-template #singleMessage>
+    <i class="fa" [ngClass]="{'fa-check-circle': type === 'success', 'fa-times-circle': type === 'error'}"></i>
+    <p class="single-message">{{ message }}</p>
+  </ng-template>
+</div>

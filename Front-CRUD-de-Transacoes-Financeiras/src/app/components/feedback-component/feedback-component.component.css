@@ -1,0 +1,87 @@
+
+.feedback-container {
+  padding: 15px;
+  margin: 15px 0;
+  border-radius: 8px;
+  font-family: 'Arial', sans-serif;
+  font-size: 16px;
+  transition: opacity 0.5s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 80%;
+}
+
+.success-message {
+  background-color: #4caf50;
+  color: white;
+  border: 1px solid #4caf50;
+}
+
+.error-message {
+  background-color: #f44336;
+  color: white;
+  border: 1px solid #f44336;
+}
+
+.message-list {
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+}
+
+.message-list li {
+  margin: 5px 0;
+  font-weight: 500;
+}
+
+.single-message {
+  font-weight: bold;
+  padding: 10px;
+}
+
+.success-message,
+.error-message {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn 0.5s ease-out;
+}
+
+.success-message i,
+.error-message i {
+  margin-right: 10px;
+  font-size: 20px;
+}
+
+.success-message i {
+  color: white;
+}
+
+.error-message i {
+  color: white;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+
+.feedback-container.ng-leave {
+  animation: fadeOut 1s forwards;
+}

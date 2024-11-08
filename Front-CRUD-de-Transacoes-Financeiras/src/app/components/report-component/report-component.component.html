@@ -1,0 +1,46 @@
+<div style="width: 100%;text-align: center">
+  <h2>
+    Informaçoes mensal ({{dias}} dias):
+  </h2>
+</div>
+<div style="display: flex;justify-content: space-between">
+  <div >
+    <div>
+      <h5>
+        Total de Despesas:
+      </h5>
+      <p style="color: red">
+        {{formatarEmReais(responseback.despesas) ? formatarEmReais(responseback.despesas) :0}}
+      </p>
+    </div>
+    <div>
+      <h5>
+        Total de Receitas:
+      </h5>
+      <p style="color: green">
+        {{formatarEmReais(responseback.receita)? formatarEmReais(responseback.receita):0}}
+      </p>
+    </div>
+  </div>
+ <div >
+   <div>
+     <h5>
+       Total de Transaçoes:
+     </h5>
+     <p>
+       {{responseback.transacoes ? responseback.transacoes:0}}
+     </p>
+   </div>
+ </div>
+  <div>
+    <h5>Total:</h5>
+    <p style="font-size: small"
+       [ngStyle]="{ 'color': responseback.total < 0 ? 'red' : 'green' }">
+      {{ responseback.total < 0 ? 'Negativo' : 'Positivo' }}
+    </p>
+
+    <p [ngStyle]="{ 'color': responseback.total < 0 ? 'red' : 'green' }">
+      {{ formatarEmReais(responseback.total) ? formatarEmReais(responseback.total) :0 }}
+    </p>
+  </div>
+</div>
